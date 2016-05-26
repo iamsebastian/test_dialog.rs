@@ -1,0 +1,11 @@
+[package]
+name = "rust_gtk_dialog"
+version = "0.1.0"
+authors = ["Sebastian Blei <s.blei@banking-partner.de>"]
+
+[dependencies]
+gtk = "^0"
+cairo-rs = "^0"
+
+[features]
+gtk_3_10 = ["gtk/v3_10"]
