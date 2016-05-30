@@ -8,7 +8,7 @@ extern crate gtk;
 mod example {
     use gtk;
     use gtk::prelude::*;
-    use gtk::{Builder, Button, Label, MessageDialog, Window};
+    use gtk::{Builder, Button, Grid, Label, ListBoxRow, ListBox, MessageDialog, Window};
     use std::env;
 
     pub fn get_cnt_label_val(b: &Builder) -> i32 {
@@ -34,7 +34,20 @@ mod example {
         let dialog = Builder::new_from_string(glade_src);
 
         let window: Window = dialog.get_object("window1").unwrap();
+        let list_box: ListBox = dialog.get_object("listbox1").unwrap();
         //window.set_title(format!("Dialog: {}", env::current_dir().unwrap().display()));
+
+        for plant in vec!["Tomatoe", "Potatoe"].iter() {
+            let btn_add_1 = Button::new_with_label(format!("{}", plant).as_str());
+            let row = ListBoxRow::new();
+            list_box.add(&row);
+            row.add(&btn_add_1);
+        }
+
+        let grid: Grid = dialog.get_object("grid2").unwrap();
+        grid.attach(&Button::new_with_label("A"), 4, 4, 1, 1);
+        grid.attach(&Button::new_with_label("B"), 6, 4, 1, 1);
+        grid.attach(&Button::new_with_label("C"), 4, 6, 1, 1);
 
         let cnt_up_btn: Button = dialog.get_object("count_up_btn").unwrap();
         let cnt_down_btn: Button = dialog.get_object("count_down_btn").unwrap();
